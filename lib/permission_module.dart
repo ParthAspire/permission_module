@@ -5,10 +5,22 @@ import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionModule {
+  List<Permission> permissionList = [
+    Permission.camera,
+    Permission.location,
+    Permission.sms,
+    Permission.storage,
+  ];
+
+  Permission cameraPermission = Permission.camera;
+  Permission smsPermission = Permission.sms;
+  Permission locationPermission = Permission.location;
+  Permission storagePermission = Permission.storage;
+
   requestMultiplePermissions(List<Permission> permissionsList) async {
     // You can request multiple permissions at once.
     Map<Permission, PermissionStatus> statuses =
-    await permissionsList.request();
+        await permissionsList.request();
 
     if (statuses[Permission.location]!.isDenied) {
       print("Location permission is denied.");
